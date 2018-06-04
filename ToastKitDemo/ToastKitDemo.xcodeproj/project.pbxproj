@@ -14,7 +14,6 @@
 		02EDDA0520C50DC100270E6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02EDDA0320C50DC100270E6E /* LaunchScreen.storyboard */; };
 		02EDDA1220C50DEC00270E6E /* ToastKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02EDDA1120C50DD900270E6E /* ToastKit.framework */; };
 		02EDDA1320C50DEC00270E6E /* ToastKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 02EDDA1120C50DD900270E6E /* ToastKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		02EDDA4520C5322500270E6E /* aaa.png in Resources */ = {isa = PBXBuildFile; fileRef = 02EDDA4120C5322500270E6E /* aaa.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +30,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 02EDD9DB20C5096D00270E6E;
 			remoteInfo = ToastKit;
-		};
-		02EDDA4320C5322500270E6E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 02EDDA0C20C50DD900270E6E /* ToastKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 02EDDA2820C5315C00270E6E;
-			remoteInfo = ToastBundle;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -64,7 +56,6 @@
 		02EDDA0420C50DC100270E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02EDDA0620C50DC100270E6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02EDDA0C20C50DD900270E6E /* ToastKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToastKit.xcodeproj; path = ../../ToastKit/ToastKit.xcodeproj; sourceTree = "<group>"; };
-		02EDDA4120C5322500270E6E /* aaa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aaa.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +93,6 @@
 				02EDD9FA20C50DBF00270E6E /* AppDelegate.swift */,
 				02EDD9FC20C50DBF00270E6E /* ViewController.swift */,
 				02EDD9FE20C50DBF00270E6E /* Main.storyboard */,
-				02EDDA4120C5322500270E6E /* aaa.png */,
 				02EDDA0120C50DC100270E6E /* Assets.xcassets */,
 				02EDDA0320C50DC100270E6E /* LaunchScreen.storyboard */,
 				02EDDA0620C50DC100270E6E /* Info.plist */,
@@ -114,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				02EDDA1120C50DD900270E6E /* ToastKit.framework */,
-				02EDDA4420C5322500270E6E /* ToastBundle.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,13 +177,6 @@
 			remoteRef = 02EDDA1020C50DD900270E6E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		02EDDA4420C5322500270E6E /* ToastBundle.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ToastBundle.bundle;
-			remoteRef = 02EDDA4320C5322500270E6E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -203,7 +185,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				02EDDA0520C50DC100270E6E /* LaunchScreen.storyboard in Resources */,
-				02EDDA4520C5322500270E6E /* aaa.png in Resources */,
 				02EDDA0220C50DC100270E6E /* Assets.xcassets in Resources */,
 				02EDDA0020C50DBF00270E6E /* Main.storyboard in Resources */,
 			);

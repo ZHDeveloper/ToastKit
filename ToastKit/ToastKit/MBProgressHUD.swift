@@ -41,11 +41,25 @@ public extension Toastable where Self: UIResponder {
         return view
     }
     
+    
+    /// Display the prompt MBProgressHUD.The default is to hide MBProgressHUD after 2 seconds
+    ///
+    /// - Parameters:
+    ///   - text: Describe the text
+    ///   - hideAfter: Default is 2 seconds
+    /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
     @discardableResult
     func showToast(_ text: String, hideAfter: TimeInterval = 2) -> MBProgressHUD {
         return showToast(text, offset: 0, hideAfter: hideAfter)
     }
 
+    /// Display the prompt MBProgressHUD
+    ///
+    /// - Parameters:
+    ///   - text: Describe the text
+    ///   - offset: The offset on the y axis
+    ///   - delay: MBProgressHUD is automatically hidden from the timer
+    /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
     @discardableResult
     func showToast(_ text: String, offset: CGFloat, hideAfter delay: TimeInterval) -> MBProgressHUD {
         
@@ -61,6 +75,11 @@ public extension Toastable where Self: UIResponder {
         return hudView
     }
     
+    
+    /// Displays the status in load
+    ///
+    /// - Parameter text: Describe the text
+    /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
     @discardableResult
     func showLoading(_ text: String? = nil) -> MBProgressHUD {
         
@@ -73,11 +92,26 @@ public extension Toastable where Self: UIResponder {
         return hudView
     }
     
+    
+    /// More status shows MBProgressHUD, which is hidden by default two seconds later
+    ///
+    /// - Parameters:
+    ///   - status: Enumeration instance of ToastStatus
+    ///   - text: Describe the text
+    /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
     @discardableResult
     func showWithStatus(_ status: ToastStatus, text: String) -> MBProgressHUD {
         return showWithStatus(status, text: text, hideAfter: 2)
     }
     
+    
+    /// More status shows MBProgressHUD
+    ///
+    /// - Parameters:
+    ///   - status: Enumeration instance of ToastStatus
+    ///   - text: Describe the text
+    ///   - delay: MBProgressHUD is automatically hidden from the timer
+    /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
     @discardableResult
     func showWithStatus(_ status: ToastStatus, text: String, hideAfter delay: TimeInterval) -> MBProgressHUD {
         
@@ -110,6 +144,13 @@ public extension Toastable where Self: UIResponder {
         return hudView
     }
     
+    
+    /// Display MBProgressHUD based on progress
+    ///
+    /// - Parameters:
+    ///   - progress: The current progress
+    ///   - text: Describe the text
+    /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
     @discardableResult
     func showProgress(_ progress: Float,text: String) -> MBProgressHUD {
         
@@ -121,7 +162,14 @@ public extension Toastable where Self: UIResponder {
         
         return hudView
     }
+
     
+    /// Hide the currently added MBProgressHUD
+    ///
+    /// - Parameters:
+    ///   - animated: Whether to display animation when hiding
+    ///   - delay: MBProgressHUD is automatically hidden from the timer
+    /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
     @discardableResult
     func hideHUD(_ animated: Bool = true, afterDelay delay: TimeInterval = 0) -> MBProgressHUD {
         hudView.hide(animated: animated, afterDelay: delay)
