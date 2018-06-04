@@ -9,7 +9,7 @@
 import Foundation
 
 public enum ToastStatus {
-    case success,error,info
+    case success,error,info,none
 }
 
 public protocol Toastable {}
@@ -42,57 +42,6 @@ public extension Toastable where Self: UIResponder {
     }
     
     
-    /// Display the prompt MBProgressHUD.The default is to hide MBProgressHUD after 2 seconds
-    ///
-    /// - Parameters:
-    ///   - text: Describe the text
-    ///   - hideAfter: Default is 2 seconds
-    /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
-    @discardableResult
-    func showToast(_ text: String, hideAfter: TimeInterval = 2) -> MBProgressHUD {
-        return showToast(text, offset: 0, hideAfter: hideAfter)
-    }
-
-    /// Display the prompt MBProgressHUD
-    ///
-    /// - Parameters:
-    ///   - text: Describe the text
-    ///   - offset: The offset on the y axis
-    ///   - delay: MBProgressHUD is automatically hidden from the timer
-    /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
-    @discardableResult
-    func showToast(_ text: String, offset: CGFloat, hideAfter delay: TimeInterval) -> MBProgressHUD {
-        
-        clearSettingStyle()
-        
-        hudView.mode = .text
-        hudView.label.text = text
-        hudView.label.font = UIFont.systemFont(ofSize: 15)
-        hudView.margin = 12
-        hudView.offset = CGPoint(x: 0, y: offset)
-        hudView.hide(animated: true, afterDelay: delay)
-        
-        return hudView
-    }
-    
-    
-    /// Displays the status in load
-    ///
-    /// - Parameter text: Describe the text
-    /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
-    @discardableResult
-    func showLoading(_ text: String? = nil) -> MBProgressHUD {
-        
-        clearSettingStyle()
-        
-        hudView.mode = .indeterminate
-        hudView.label.text = text
-        hudView.margin = 15
-        
-        return hudView
-    }
-    
-    
     /// More status shows MBProgressHUD, which is hidden by default two seconds later
     ///
     /// - Parameters:
@@ -100,8 +49,8 @@ public extension Toastable where Self: UIResponder {
     ///   - text: Describe the text
     /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
     @discardableResult
-    func showWithStatus(_ status: ToastStatus, text: String) -> MBProgressHUD {
-        return showWithStatus(status, text: text, hideAfter: 2)
+    func showToast(_ text: String, status: ToastStatus = .none) -> MBProgressHUD {
+        return showToast(text, status: status, hideAfter: 2)
     }
     
     
@@ -113,12 +62,12 @@ public extension Toastable where Self: UIResponder {
     ///   - delay: MBProgressHUD is automatically hidden from the timer
     /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
     @discardableResult
-    func showWithStatus(_ status: ToastStatus, text: String, hideAfter delay: TimeInterval) -> MBProgressHUD {
+    func showToast(_ text: String, status: ToastStatus, hideAfter delay: TimeInterval) -> MBProgressHUD {
         
         clearSettingStyle()
         
         let bundle = Bundle.init(for: MBProgressHUD.self)
-        var imagePath: String!
+        var imagePath: String?
         
         switch status {
         case .success:
@@ -127,14 +76,22 @@ public extension Toastable where Self: UIResponder {
             imagePath = bundle.path(forResource: "tips_info@2x.png", ofType: nil)
         case .error:
             imagePath = bundle.path(forResource: "tips_error@2x.png", ofType: nil)
+        case .none:
+            break
         }
         
-        let image = UIImage(contentsOfFile: imagePath)
-        let imageView: UIImageView = UIImageView(image: image)
-        imageView.sizeToFit()
+        if let imagePath = imagePath {
+            let image = UIImage(contentsOfFile: imagePath)
+            let imageView: UIImageView = UIImageView(image: image)
+            imageView.sizeToFit()
+            
+            hudView.mode = .customView
+            hudView.customView = imageView
+        }
+        else {
+            hudView.mode = .text
+        }
         
-        hudView.mode = .customView
-        hudView.customView = imageView
         hudView.detailsLabel.text = text
         hudView.detailsLabel.font = UIFont.systemFont(ofSize: 15)
         hudView.margin = 15
@@ -171,7 +128,7 @@ public extension Toastable where Self: UIResponder {
     ///   - delay: MBProgressHUD is automatically hidden from the timer
     /// - Returns: Return MBProgressHUD, and you can set callbacks when they are completely hidden
     @discardableResult
-    func hideHUD(_ animated: Bool = true, afterDelay delay: TimeInterval = 0) -> MBProgressHUD {
+    func hideToast(_ animated: Bool = true, afterDelay delay: TimeInterval = 0) -> MBProgressHUD {
         hudView.hide(animated: animated, afterDelay: delay)
         return hudView
     }
@@ -183,7 +140,6 @@ public extension Toastable where Self: UIResponder {
         hudView.label.font = UIFont.boldSystemFont(ofSize: 16.0)
         hudView.detailsLabel.font = UIFont.boldSystemFont(ofSize: 12.0)
     }
-    
 }
 
 extension UIResponder: Toastable {}
